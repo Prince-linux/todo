@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+
+<h2>Create new Todo List</h2>
+
+<form action="/new/" method="Post">
+
+        {% csrf_token %}
+
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+
+</form>
+
+<h1>List all todo lists</h1>
+
+{% for item in items %}
+
+<ul>{{ item.content }} - {{ item.author }} -{{ item.date_ceated }} : {{ completed }}</ul>
+
+{% endfor %}
+
+</body>
+</html>
