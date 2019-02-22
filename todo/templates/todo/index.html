@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Todo List</title>
+    <title>Todo</title>
 </head>
 <body>
 
@@ -16,14 +16,6 @@
     <input type="submit" value="Submit">
 
 </form>
-
-<h1>List all todo lists</h1>
-
-{% for item in items %}
-
-<ul>{{ item.content }} - {{ item.author }} -{{ item.date_ceated }} : {{ completed }}</ul>
-
-{% endfor %}
 
 </body>
 </html>
