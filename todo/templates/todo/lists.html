@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+<h1>List all todo lists</h1>
+<table border="1" style="width:800px">
+
+      <tr>
+        <th>To do</th>
+        <th>Author</th>
+        <th>Date Created</th>
+        <th>Completed</th>
+      </tr>
+
+               {% for item in items %}
+      <tr>
+          <td>   {{ item.content }} </td>
+          <td>    {{ item.author }} </td>
+          <td>     {{ item.date_created }} </td>
+          <td>
+                    {% if item.completed %}
+                        Done
+                    {% else %}
+                        Undone
+                    {% endif %}
+
+            </td>
+               {% endfor %}
+        </tr>
+</table>
+
+<!--
+{% for item in items %}
+
+<ul>{{ item.content }} - {{ item.author }} -{{ item.date_created }} : {{ completed }}</ul>
+
+{% endfor %}
+
+-->
+</body>
+</html>
+
