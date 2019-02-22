@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from todo.views import index, save
+from todo.views import index, save, lists
 
 urlpatterns = [
     # Examples:
@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^todo/$',index, name="main-view"),
     url(r'^new/$', save, name="addTodo"),
+    url(r'^list/$', lists, name = "list_todo"),
 
 ]
