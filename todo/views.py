@@ -4,9 +4,9 @@ from .models import TodoItem
 from todo.forms.todo_form import TodoForm
 
 def index(request):
-	item_form = TodoForm()
-	items = TodoItem.objects.all()
-	return render(request, 'todo/index.html', {'form': item_form, 'items':items})
+    item_form = TodoForm()
+    #items = TodoItem.objects.all()
+    return render(request, 'todo/index.html', {'form': item_form}) #'items':items})
 
 def save(request):
     item_form = TodoForm(request.POST)
@@ -19,6 +19,10 @@ def save(request):
         new_item.completed = item_form.cleaned_data['completed']
         new_item.save()
         return HttpResponseRedirect('/todo')
-
     else:
         return render(request, 'todo/index.html', {'form': item_form})
+
+def lists(request):
+    items = TodoItem.objects.all()
+    return render(request, 'todo/lists.html', {'items':items})
+
