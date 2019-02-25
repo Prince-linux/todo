@@ -4,42 +4,40 @@
     <meta charset="UTF-8">
     <title>Todo List</title>
 </head>
+<h1>Todo List</h1>
+{% if items %}
 <body>
-<h1>List all todo lists</h1>
 <table border="1" style="width:800px">
-
-      <tr>
+<a href="/create/">Create_todo</a>
+    <tr>
         <th>To do</th>
         <th>Author</th>
         <th>Date Created</th>
         <th>Completed</th>
-      </tr>
+    </tr>
+    {% for item in items %}
 
-               {% for item in items %}
-      <tr>
-          <td>   {{ item.content }} </td>
-          <td>    {{ item.author }} </td>
-          <td>     {{ item.date_created }} </td>
-          <td>
-                    {% if item.completed %}
-                        Done
-                    {% else %}
-                        Undone
-                    {% endif %}
-
-            </td>
-               {% endfor %}
-        </tr>
+    <tr>
+        <td> {{ item.content }}</td>
+        <td> {{ item.author }}</td>
+        <td> {{ item.date_created }}</td>
+        <td>
+            {% if item.completed %}
+            Done - <a href="/mark/{{item.id}}/undone">mark as undone</a>
+            <a href="/delete{{item.id}}/">delete</a>
+            {% else %}
+            Undone - <a href="/mark/{{ item.id }}/done/">mark as done</a>
+            <a href="/delete{{item.id}}/">delete</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
 </table>
-
-<!--
-{% for item in items %}
-
-<ul>{{ item.content }} - {{ item.author }} -{{ item.date_created }} : {{ completed }}</ul>
-
-{% endfor %}
-
--->
+<a href="/delete_all/">Delete_all</a>
 </body>
+{% else %}
+    <p>There are no items in todo list</p>
+    <a href="/create_new/">Click here to add a new todo list</a>
+{% endif %}
 </html>
 
