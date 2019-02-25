@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import TodoItem
 from todo.forms.todo_form import TodoForm
 
+
 def index(request):
     item_form = TodoForm()
-    #items = TodoItem.objects.all()
-    return render(request, 'todo/index.html', {'form': item_form}) #'items':items})
+    return render(request, 'todo/index.html', {'form': item_form})
 
 def save(request):
     item_form = TodoForm(request.POST)
@@ -18,11 +18,45 @@ def save(request):
         new_item.date_created = item_form.cleaned_data['date_created']
         new_item.completed = item_form.cleaned_data['completed']
         new_item.save()
-        return HttpResponseRedirect('/todo')
+        return HttpResponseRedirect('/list')
     else:
         return render(request, 'todo/index.html', {'form': item_form})
 
 def lists(request):
     items = TodoItem.objects.all()
     return render(request, 'todo/lists.html', {'items':items})
+
+
+def mark_as_done(request, item_id):
+    item = TodoItem.objects.get(pk=item_id)
+    item.completed = True
+    item.save()
+    return HttpResponseRedirect('/list')
+
+
+def mark_as_undone(request, item_id):
+    item = TodoItem.objects.get(pk=item_id)
+    item.completed = False
+    item.save()
+    return HttpResponseRedirect('/list')
+
+def delete(request, item_id):
+    item = TodoItem.objects.get(pk=item_id)
+    item.delete()
+    return HttpResponseRedirect('/list')
+
+def delete_all(self):
+    TodoItem.objects.all().delete()
+    return HttpResponseRedirect('/list')
+
+def create_todo(self):
+    return HttpResponseRedirect('/todo')
+
+
+def create_new(self):
+    return HttpResponseRedirect('/todo')
+
+
+
+
 
