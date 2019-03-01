@@ -1,43 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Todo List</title>
 </head>
 <h1>Todo List</h1>
 {% if items %}
 <body>
-<table border="1" style="width:800px">
-<a href="/create/">Create_todo</a>
-    <tr>
-        <th>To do</th>
-        <th>Author</th>
-        <th>Date Created</th>
-        <th>Completed</th>
-    </tr>
-    {% for item in items %}
+<div class="container-fluid">
+    <div class="col-sm-8 text-left">
+    <div class="table-bordered">
+        <table class="table">
+            <a href="/create/" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Create_todo</a>
+            <thead>
+            <tr class="d-flex">
+                <th class="col-3">Content</th>
+                <th class="col-3">Author</th>
+                <th class="col-3">Date_Created</th>
+                <th class="col-3">Completed</th>
+            </tr>
+            </thead>
+            {% for item in items %}
+            <tbody>
+            <tr class="d-flex">
+                <td class="col-3"> {{ item.content }}</td>
+                <td class="col-3"> {{ item.author }}</td>
+                <td class="col-3"> {{ item.date_created }}</td>
+                <td class="col-3">
+                    {% if item.completed %}
+                    Done <a href="/mark/{{item.id}}/undone" class="btn btn-dark btn-sm active" role="button"
+                              aria-pressed="true">mark as undone</a>
+                    <a href="/delete{{item.id}}/">delete</a>
+                    {% else %}
+                    Undone <a href="/mark/{{ item.id }}/done/" class="btn btn-success btn-sm active" role="button"
+                                aria-pressed="true">mark as done</a>
+                    <a href="/delete{{item.id}}/" class="btn btn-warning btn-sm active" role="button"
+                       aria-pressed="true">delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/delete_all/" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Delete_all</a>
 
-    <tr>
-        <td> {{ item.content }}</td>
-        <td> {{ item.author }}</td>
-        <td> {{ item.date_created }}</td>
-        <td>
-            {% if item.completed %}
-            Done - <a href="/mark/{{item.id}}/undone">mark as undone</a>
-            <a href="/delete{{item.id}}/">delete</a>
-            {% else %}
-            Undone - <a href="/mark/{{ item.id }}/done/">mark as done</a>
-            <a href="/delete{{item.id}}/">delete</a>
-            {% endif %}
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-<a href="/delete_all/">Delete_all</a>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</div>
+</div>
 </body>
 {% else %}
-    <p>There are no items in todo list</p>
-    <a href="/create_new/">Click here to add a new todo list</a>
+<p>There are no items in todo list</p>
+<a href="/create_new/" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Click here to add a new todo
+    list</a>
 {% endif %}
 </html>
+
+
 
