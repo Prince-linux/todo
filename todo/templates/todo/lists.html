@@ -32,14 +32,19 @@
                 <td class="col-3"> {{ item.date_created }}</td>
                 <td class="col-3">
                     {% if item.completed %}
-                    Done <a href="/mark/{{item.id}}/undone" class="btn btn-dark btn-sm active" role="button"
+                    Done <a href="/mark/{{item.id}}/undone/" class="btn btn-dark btn-sm active" role="button"
                               aria-pressed="true">mark as undone</a>
-                    <a href="/delete{{item.id}}/">delete</a>
+                    <a href="/delete/{{item.id}}/" class="btn btn-warning btn-sm active" role="button"
+                       aria-pressed="true">delete</a>
+                    <a href="/edit/{{item.id}}/" class="btn btn-warning btn-sm active" role="button"
+                       aria-pressed="true">edit</a>
                     {% else %}
                     Undone <a href="/mark/{{ item.id }}/done/" class="btn btn-success btn-sm active" role="button"
                                 aria-pressed="true">mark as done</a>
-                    <a href="/delete{{item.id}}/" class="btn btn-warning btn-sm active" role="button"
+                    <a href="/delete/{{item.id}}/" class="btn btn-warning btn-sm active" role="button"
                        aria-pressed="true">delete</a>
+                    <a href="/edit/{{item.id}}/" class="btn btn-warning btn-sm active" role="button"
+                       aria-pressed="true">edit</a>
                     {% endif %}
                 </td>
             </tr>
