@@ -66,7 +66,7 @@ def edit(request, item_id):
     item_form = TodoForm(initial=params)
 
    # item_form = TodoForm(initial=item)
-    return render(request, 'todo/edit.html', {'item':item, 'form':item_form})
+    return render(request, 'todo/edit.html', {'item': item, 'form': item_form})
 
 def update(request, item_id):
     item = TodoItem.objects.get(pk=item_id)

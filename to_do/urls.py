@@ -8,7 +8,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     #url(r'^admin/', include(admin.site.urls)),
-    url(r'^todo/$',index, name="main-view"),
+    url(r'^todo/$', index, name="main-view"),
     url(r'^new/$', save, name="addTodo"),
     url(r'^list/$', lists, name = "list_todo"),
     url(r'^mark/(?P<item_id>\d+)/done/$', mark_as_done),
